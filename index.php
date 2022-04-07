@@ -1,4 +1,4 @@
-
+<?php include("template/cabecario.php");?>
 
             <div class="jumbotron">
                 <h1 class="display-3">Jumbo heading</h1>
@@ -10,4 +10,5 @@
                 </p>
             </div>
 
+<?php include("template/rodape.php");?>
  
