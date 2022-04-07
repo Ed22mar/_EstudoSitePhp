@@ -18,13 +18,13 @@
                 <a class="nav-link" href="#">Develoteca </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Inicio</a>
+                <a class="nav-link" href="index.php">Inicio</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Livros</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Nosotros</a>
+                <a class="nav-link" href="sobreNos.php">Sobre-Nós</a>
             </li>
         </ul>
     </nav>
