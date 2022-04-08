@@ -1,4 +1,6 @@
-
+<?php
+    include('template/cabecario.php');
+?>
             <div class="col-md-12">
                 
                 <div class="jumbotron">
@@ -13,3 +15,6 @@
 
             </div>
             
+<?php
+include('template/rodape.php');
+?>
