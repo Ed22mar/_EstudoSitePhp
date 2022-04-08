@@ -29,10 +29,28 @@
             </form>
         </div>
     </div>
-
-    
+  
 </div>
+
 <div class="col-md-7">
-    Tabela de livros(mostrar os dados dos livros)
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</i></th>
+                <th>Nome</th>
+                <th>Imagem</th>
+                <th>Acções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2</td>
+                <td>Aprender.php</td>
+                <td>imagem.png</td>
+                <td>Selecionar | Apagar</td>
+            </tr>
+
+        </tbody>
+    </table>
 </div>
 <?php include("../template/rodape.php");?>
