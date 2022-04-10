@@ -1,4 +1,8 @@
 <?php include("../template/cabecario.php");?>
+<?php 
+    print_r($_POST);
+    print_r($_FILES);
+?>
 
 <div class="col-md-5">
 
@@ -18,12 +22,12 @@
                 </div>
                 <div class="form-group">
                     <label for="">Imagem:</label>
-                    <input type="file" class="form-control" name="" id="">
+                    <input type="file" class="form-control" name="txtImagem" id="txtImagem">
                 </div>
                 <div class="btn-group" role="group" aria-label="">
-                    <button type="button" class="btn btn-success">Salvar</button>
-                    <button type="button" class="btn btn-warning">Modificar</button>
-                    <button type="button" class="btn btn-info">cancelar</button>
+                    <button type="submit" name="action" value="Salvar" class="btn btn-success">Salvar</button>
+                    <button type="submit" name="action" value="Modificar" class="btn btn-warning">Modificar</button>
+                    <button type="submit" name="action" value="Cancelar" class="btn btn-info">Cancelar</button>
                 </div>
 
             </form>
