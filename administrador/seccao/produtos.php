@@ -1,7 +1,29 @@
 <?php include("../template/cabecario.php");?>
 <?php 
-    print_r($_POST);
-    print_r($_FILES);
+
+    $txtID=(isset($_POST['txtID']))?$_POST['txtID']:"";
+    $txtNome=(isset($_POST['txtNome']))?$_POST['txtNome']:"";
+    $txtImagem=(isset($_FILES['txtImagem']['name']))?$_FILES['txtImagem']['name']:"";
+    $action=(isset($_POST['action']))?$_POST['action']:"";
+
+    echo $txtID."<br/>";
+    echo $txtNome."<br/>";
+    echo $txtImagem."<br/>";
+    echo $action."<br/>";
+
+    switch($action){
+        case "Salvar":
+            echo "Pressionado botão salvar";    
+        break;
+
+        case "Modificar":
+            echo "Pressionado botão modificar";    
+        break;
+        case "Cancelar":
+            echo "Pressionado botão cancelar";    
+        break;
+    }
+
 ?>
 
 <div class="col-md-5">
