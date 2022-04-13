@@ -12,11 +12,12 @@ include("../config/bd.php");
         //INSERT INTO `livros` (`id`, `nome`, `imagem`) VALUES (NULL, 'Livro php', 'imagem.jpg');
         
         case "Salvar":
-            $sentenciaSQL=$conexao->prepare("INSERT INTO `livros` (`id`, `nome`, `imagem`) VALUES (NULL, 'Livro php', 'imagem.jpg');");
+            $sentenciaSQL=$conexao->prepare("INSERT INTO livros ( nome,imagem) VALUES (:nome, :imagem);");
+            $sentenciaSQL->bindParam(':nome',$txtNome);
+            $sentenciaSQL->bindParam(':imagem',$txtImagem);
             $sentenciaSQL->execute();
             echo "Pressionado botão salvar";    
         break;
-
         case "Modificar":
             echo "Pressionado botão modificar";    
         break;
@@ -24,7 +25,6 @@ include("../config/bd.php");
             echo "Pressionado botão cancelar";
         break;
     }
-
 ?>
 
 <div class="col-md-5">
