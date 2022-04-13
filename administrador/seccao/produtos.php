@@ -80,7 +80,18 @@ include("../config/bd.php");
                 <td><?php echo $livros['id'];?></td>
                 <td><?php echo $livros['nome'];?></td>
                 <td><?php echo $livros['imagem'];?></td>
-                <td>Selecionar | Apagar</td>
+                <td>
+                    Selecionar | Apagar
+                <form method="post">
+
+                    <input type="text" name="txtID" id="txtID" value="<?php echo$livros['id'];?>">
+
+                    <input type="submit" value="Selecionar" name="action" class="btn btn-primary">
+
+                    <input type="submit" value="Apagar" name="action" class="btn btn-danger">  
+
+                </form>
+                </td>
             </tr>
             <?php }?>
         </tbody>
