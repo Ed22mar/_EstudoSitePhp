@@ -6,15 +6,7 @@
     $txtImagem=(isset($_FILES['txtImagem']['name']))?$_FILES['txtImagem']['name']:"";
     $action=(isset($_POST['action']))?$_POST['action']:"";
 
-
-    try {
-        $conexao=new PDO("mysql:host=localhost;dbname=sitioweb","root","");
-        if($conexao){
-            echo "Conectado... ao sistema";
-        }
-    } catch (Exception $erro) {
-        echo $erro->getMessage();
-    }
+include("../config/bd.php");
     
     switch($action){
         //INSERT INTO `livros` (`id`, `nome`, `imagem`) VALUES (NULL, 'Livro php', 'imagem.jpg');
