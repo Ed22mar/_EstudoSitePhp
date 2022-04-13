@@ -1,4 +1,7 @@
-<?php include("../template/cabecario.php");?>
+<?php 
+include("../template/cabecario.php");
+include("../config/bd.php");
+?>
 <?php 
 
     $txtID=(isset($_POST['txtID']))?$_POST['txtID']:"";
@@ -6,17 +9,14 @@
     $txtImagem=(isset($_FILES['txtImagem']['name']))?$_FILES['txtImagem']['name']:"";
     $action=(isset($_POST['action']))?$_POST['action']:"";
 
-include("../config/bd.php");
+
     
     switch($action){
-        //INSERT INTO `livros` (`id`, `nome`, `imagem`) VALUES (NULL, 'Livro php', 'imagem.jpg');
-        
         case "Salvar":
-            $sentenciaSQL=$conexao->prepare("INSERT INTO livros ( nome,imagem) VALUES (:nome, :imagem);");
+            $sentenciaSQL=$conexao->prepare("INSERT INTO livros (nome,imagem) VALUES (:nome, :imagem);");
             $sentenciaSQL->bindParam(':nome',$txtNome);
             $sentenciaSQL->bindParam(':imagem',$txtImagem);
-            $sentenciaSQL->execute();
-            echo "Pressionado botão salvar";    
+            $sentenciaSQL->execute();  
         break;
         case "Modificar":
             echo "Pressionado botão modificar";    
@@ -25,6 +25,11 @@ include("../config/bd.php");
             echo "Pressionado botão cancelar";
         break;
     }
+
+    $sentenciaSQL=$conexao->prepare("SELECT * FROM livros");
+    $sentenciaSQL->execute();
+    $listarLivros=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <div class="col-md-5">
@@ -70,13 +75,14 @@ include("../config/bd.php");
             </tr>
         </thead>
         <tbody>
+            <?php foreach($listarLivros as $livros){;?>
             <tr>
-                <td>2</td>
-                <td>Aprender.php</td>
-                <td>imagem.png</td>
+                <td><?php echo $livros['id'];?></td>
+                <td><?php echo $livros['nome'];?></td>
+                <td><?php echo $livros['imagem'];?></td>
                 <td>Selecionar | Apagar</td>
             </tr>
-
+            <?php }?>
         </tbody>
     </table>
 </div>
