@@ -6,13 +6,22 @@
     $txtImagem=(isset($_FILES['txtImagem']['name']))?$_FILES['txtImagem']['name']:"";
     $action=(isset($_POST['action']))?$_POST['action']:"";
 
-    echo $txtID."<br/>";
-    echo $txtNome."<br/>";
-    echo $txtImagem."<br/>";
-    echo $action."<br/>";
 
+    try {
+        $conexao=new PDO("mysql:host=localhost;dbname=sitioweb","root","");
+        if($conexao){
+            echo "Conectado... ao sistema";
+        }
+    } catch (Exception $erro) {
+        echo $erro->getMessage();
+    }
+    
     switch($action){
+        //INSERT INTO `livros` (`id`, `nome`, `imagem`) VALUES (NULL, 'Livro php', 'imagem.jpg');
+        
         case "Salvar":
+            $sentenciaSQL=$conexao->prepare("INSERT INTO `livros` (`id`, `nome`, `imagem`) VALUES (NULL, 'Livro php', 'imagem.jpg');");
+            $sentenciaSQL->execute();
             echo "Pressionado botão salvar";    
         break;
 
@@ -20,7 +29,7 @@
             echo "Pressionado botão modificar";    
         break;
         case "Cancelar":
-            echo "Pressionado botão cancelar";    
+            echo "Pressionado botão cancelar";
         break;
     }
 
