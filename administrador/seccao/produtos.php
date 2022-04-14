@@ -24,6 +24,15 @@ include("../config/bd.php");
         case "Cancelar":
             echo "Pressionado botão cancelar";
         break;
+        case "Selecionar":
+            echo "Pressionado botão Selecionar";
+        break;
+        case "Apagar":
+            $sentenciaSQL=$conexao->prepare("DELETE FROM livros WHERE id=:id");
+            $sentenciaSQL->bindParam(':id',$txtID);
+            $sentenciaSQL->execute();
+            //echo "Pressionado botão Apagar";
+        break;
     }
 
     $sentenciaSQL=$conexao->prepare("SELECT * FROM livros");
@@ -84,11 +93,11 @@ include("../config/bd.php");
                     Selecionar | Apagar
                 <form method="post">
 
-                    <input type="text" name="txtID" id="txtID" value="<?php echo$livros['id'];?>">
+                    <input type="hidden" name="txtID" id="txtID" value="<?php echo$livros['id'];?>"/>
 
-                    <input type="submit" value="Selecionar" name="action" class="btn btn-primary">
+                    <input type="submit" value="Selecionar" name="action" class="btn btn-primary"/>
 
-                    <input type="submit" value="Apagar" name="action" class="btn btn-danger">  
+                    <input type="submit" value="Apagar" name="action" class="btn btn-danger"/>  
 
                 </form>
                 </td>
