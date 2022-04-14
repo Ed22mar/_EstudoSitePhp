@@ -25,7 +25,14 @@ include("../config/bd.php");
             echo "Pressionado botão cancelar";
         break;
         case "Selecionar":
-            echo "Pressionado botão Selecionar";
+            $sentenciaSQL=$conexao->prepare("SELECT * FROM livros WHERE id=:id");
+            $sentenciaSQL->bindParam('id',$txtID);
+            $sentenciaSQL->execute();
+            $livros=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
+
+            $txtNome=$livros['nome'];
+            $txtImagem=$livros['imagem'];
+            //echo "Pressionado botão Selecionar";
         break;
         case "Apagar":
             $sentenciaSQL=$conexao->prepare("DELETE FROM livros WHERE id=:id");
@@ -51,14 +58,15 @@ include("../config/bd.php");
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="txtID">ID:</label>
-                    <input type="text" class="form-control" name="txtID" id="txtID" placeholder="ID">
+                    <input type="text" value="<?php echo $txtID; ?>" class="form-control" name="txtID" id="txtID" placeholder="ID">
                 </div>
                 <div class="form-group">
                     <label for="txtNome">Nome:</label>
-                    <input type="text" class="form-control" name="txtNome" id="txtNome" placeholder="Nome do livro">
+                    <input type="text" value="<?php echo $txtNome; ?>" class="form-control" name="txtNome" id="txtNome" placeholder="Nome do livro">
                 </div>
                 <div class="form-group">
                     <label for="">Imagem:</label>
+                    <?php echo $txtImagem; ?>;
                     <input type="file" class="form-control" name="txtImagem" id="txtImagem">
                 </div>
                 <div class="btn-group" role="group" aria-label="">
