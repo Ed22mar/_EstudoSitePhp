@@ -15,7 +15,7 @@ include("../config/bd.php");
         case "Salvar":
             $sentenciaSQL=$conexao->prepare("INSERT INTO livros (nome,imagem) VALUES (:nome, :imagem);");
             $sentenciaSQL->bindParam(':nome',$txtNome);
-            
+
             /**
              *  insert imagen 
             */
@@ -61,10 +61,22 @@ include("../config/bd.php");
             //echo "Pressionado botão Selecionar";
         break;
         case "Apagar":
+
+            $sentenciaSQL=$conexao->prepare("SELECT imagem FROM livros WHERE id=:id");
+            $sentenciaSQL->bindParam(':id',$txtID);
+            $sentenciaSQL->execute();
+            $livros=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
+
+            if (isset($livros["imagem"]) && ($livros["imagem"]!="imagem")) {
+                if (file_exists("../../img/".$livros["imagem"])) {
+                    unlink("../../img/".$livros["imagem"]);
+                }
+            }
+
             $sentenciaSQL=$conexao->prepare("DELETE FROM livros WHERE id=:id");
             $sentenciaSQL->bindParam(':id',$txtID);
             $sentenciaSQL->execute();
-            //echo "Pressionado botão Apagar";
+            
         break;
     }
 
