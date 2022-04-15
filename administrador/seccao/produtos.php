@@ -23,6 +23,14 @@ include("../config/bd.php");
             $sentenciaSQL->bindParam(':nome',$txtNome);
             $sentenciaSQL->bindParam(':id',$txtID);
             $sentenciaSQL->execute();   
+
+            if($txtImagem!=""){
+                $sentenciaSQL=$conexao->prepare("UPDATE livros SET imagem=:imagem WHERE id=:id");
+                $sentenciaSQL->bindParam(':imagem',$txtImagem);
+                $sentenciaSQL->bindParam(':id',$txtID);
+                $sentenciaSQL->execute();   
+            }
+
         break;
         case "Cancelar":
             echo "Pressionado botão cancelar";
@@ -69,7 +77,7 @@ include("../config/bd.php");
                 </div>
                 <div class="form-group">
                     <label for="">Imagem:</label>
-                    <?php echo $txtImagem; ?>;
+                    <?php echo $txtImagem; ?>
                     <input type="file" class="form-control" name="txtImagem" id="txtImagem">
                 </div>
                 <div class="btn-group" role="group" aria-label="">
@@ -101,7 +109,6 @@ include("../config/bd.php");
                 <td><?php echo $livros['nome'];?></td>
                 <td><?php echo $livros['imagem'];?></td>
                 <td>
-                    Selecionar | Apagar
                 <form method="post">
 
                     <input type="hidden" name="txtID" id="txtID" value="<?php echo$livros['id'];?>"/>
