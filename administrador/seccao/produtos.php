@@ -79,7 +79,7 @@ include("../config/bd.php");
             
         break;
     }
-
+2.19
     $sentenciaSQL=$conexao->prepare("SELECT * FROM livros");
     $sentenciaSQL->execute();
     $listarLivros=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
