@@ -19,7 +19,10 @@ include("../config/bd.php");
             $sentenciaSQL->execute();  
         break;
         case "Modificar":
-            echo "Pressionado botão modificar";    
+            $sentenciaSQL=$conexao->prepare("UPDATE livros SET nome=:nome WHERE id=:id");
+            $sentenciaSQL->bindParam(':nome',$txtNome);
+            $sentenciaSQL->bindParam(':id',$txtID);
+            $sentenciaSQL->execute();   
         break;
         case "Cancelar":
             echo "Pressionado botão cancelar";
