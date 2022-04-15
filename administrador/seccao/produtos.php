@@ -15,8 +15,23 @@ include("../config/bd.php");
         case "Salvar":
             $sentenciaSQL=$conexao->prepare("INSERT INTO livros (nome,imagem) VALUES (:nome, :imagem);");
             $sentenciaSQL->bindParam(':nome',$txtNome);
+            
+            /**
+             *  insert imagen 
+            */
+
+            $fecha= new DateTime();
+            $nomeArquivo=($txtImagem!="")?$fecha->getTimestamp()."_".$_FILES["txtImagem"]["name"]:"imagem.jpg";
+            $tmpImagem=$_FILES["txtImagem"]["tmp_name"];
+
+            if ($tmpImagem!="") {
+                move_uploaded_file($tmpImagem,"../../img/".$nomeArquivo);  
+            }
+            
             $sentenciaSQL->bindParam(':imagem',$txtImagem);
             $sentenciaSQL->execute();  
+            
+
         break;
         case "Modificar":
             $sentenciaSQL=$conexao->prepare("UPDATE livros SET nome=:nome WHERE id=:id");
