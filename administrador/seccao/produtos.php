@@ -68,14 +68,16 @@ include("../config/bd.php");
             $livros=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
 
             if(isset($livros["imagem"]) && ($livros["imagem"]!="imagem.jpg")){
-                if (file_exists("../../img/".$livros["imagem"])) {
+                $arquivo= "../../img/".$livros["imagem"];
+               if(file_exists($arquivo)) {
                     unlink("../../img/".$livros["imagem"]);
                 }
             }
 
             $sentenciaSQL=$conexao->prepare("DELETE FROM livros WHERE id=:id");
             $sentenciaSQL->bindParam(':id',$txtID);
-            $sentenciaSQL->execute();  
+            $sentenciaSQL->execute(); 
+            
             
         break;
     }
@@ -92,6 +94,7 @@ include("../config/bd.php");
         <div class="card-header">
             Dados do Livro
         </div>
+
         <div class="card-body">
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
