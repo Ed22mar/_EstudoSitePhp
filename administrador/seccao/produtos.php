@@ -13,21 +13,20 @@ include("../config/bd.php");
     
     switch($action){
         case "Salvar":
+            $fecha = new DateTime();
+            //$fecha= new DateTime();$fecha->getTimestamp()."_".
+            $nomeArquivo=($txtImagem!="")?$fecha->getTimestamp()."_".$_FILES["txtImagem"]["name"]:"imagem.jpg";
+            $tmpImagem=$_FILES["txtImagem"]["tmp_name"];
+            if ($tmpImagem!="") {
+                move_uploaded_file($tmpImagem,"../../img/".$nomeArquivo);  
+            }
+
             $sentenciaSQL=$conexao->prepare("INSERT INTO livros (nome,imagem) VALUES (:nome, :imagem);");
             $sentenciaSQL->bindParam(':nome',$txtNome);
 
             /**
-             *  insert imagen 
-            */
+             *  insert imagen */
 
-            $fecha= new DateTime();
-            $nomeArquivo=($txtImagem!="")?$fecha->getTimestamp()."_".$_FILES["txtImagem"]["name"]:"imagem.jpg";
-            $tmpImagem=$_FILES["txtImagem"]["tmp_name"];
-
-            if ($tmpImagem!="") {
-                move_uploaded_file($tmpImagem,"../../img/".$nomeArquivo);  
-            }
-            
             $sentenciaSQL->bindParam(':imagem',$txtImagem);
             $sentenciaSQL->execute();  
             
@@ -40,8 +39,26 @@ include("../config/bd.php");
             $sentenciaSQL->execute();   
 
             if($txtImagem!=""){
+
+                //$fecha = new DateTime();$fecha->getTimestamp()."_".
+                $nomeArquivo=($txtImagem!="")?$_FILES["txtImagem"]["name"]:"imagem.jpg";
+                $tmpImagem=$_FILES["txtImagem"]["tmp_name"];
+
+                move_uploaded_file($tmpImagem,"../../img/".$nomeArquivo);
+
+                $sentenciaSQL=$conexao->prepare("SELECT imagem FROM livros WHERE id=:id");
+                $sentenciaSQL->bindParam(':id',$txtID);
+                $sentenciaSQL->execute();
+                $livros=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
+
+                if(isset($livros["imagem"])):
+                    if(file_exists("../../img/".$livros["imagem"])):
+                        unlink("../../img/".$livros["imagem"]);
+                    endif;
+                endif;
+
                 $sentenciaSQL=$conexao->prepare("UPDATE livros SET imagem=:imagem WHERE id=:id");
-                $sentenciaSQL->bindParam(':imagem',$txtImagem);
+                $sentenciaSQL->bindParam(':imagem',$nomeArquivo);
                 $sentenciaSQL->bindParam(':id',$txtID);
                 $sentenciaSQL->execute();   
             }
@@ -67,18 +84,17 @@ include("../config/bd.php");
             $sentenciaSQL->execute();
             $livros=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
 
-            if(isset($livros["imagem"]) && ($livros["imagem"]!="imagem.jpg")){
-                $arquivo= "../../img/".$livros["imagem"];
-               if(file_exists($arquivo)) {
+            
+            if(isset($livros["imagem"])):
+                if(file_exists("../../img/".$livros["imagem"])):
                     unlink("../../img/".$livros["imagem"]);
-                }
-            }
+                endif;
+            endif;
 
             $sentenciaSQL=$conexao->prepare("DELETE FROM livros WHERE id=:id");
             $sentenciaSQL->bindParam(':id',$txtID);
-            $sentenciaSQL->execute(); 
-            
-            
+            $sentenciaSQL->execute();
+
         break;
     }
 

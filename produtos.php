@@ -1,4 +1,6 @@
-<?php include("template/cabecario.php");?>
+<?php include("template/cabecario.php");
+?>
+
 
     <div class="col-md-3">
         <div class="card">
