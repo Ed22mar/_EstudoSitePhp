@@ -65,7 +65,7 @@ include("../config/bd.php");
 
         break;
         case "Cancelar":
-            echo "Pressionado botão cancelar";
+            header('Location:produtos.php');
         break;
         case "Selecionar":
             $sentenciaSQL=$conexao->prepare("SELECT * FROM livros WHERE id=:id");
@@ -130,12 +130,12 @@ include("../config/bd.php");
                         <img class="img-thumbnail rounded"src="../../img/<?php echo $txtImagem; ?>" width="50"alt="" srcset="">
 
                     <?php endif; ?>
-                    <input type="file" required class="form-control" name="txtImagem" id="txtImagem">
+                    <input type="file" class="form-control" name="txtImagem" id="txtImagem">
                 </div>
                 <div class="btn-group" role="group" aria-label="">
-                    <button type="submit" name="action" value="Salvar" class="btn btn-success">Salvar</button>
-                    <button type="submit" name="action" value="Modificar" class="btn btn-warning">Modificar</button>
-                    <button type="submit" name="action" value="Cancelar" class="btn btn-info">Cancelar</button>
+                    <button type="submit" name="action" <?php //echo ($accao =="Selecionar")?"disabled":"enabled";?> value="Salvar" class="btn btn-success">Salvar</button>
+                    <button type="submit" name="action" <?php //echo ($accao!="Selecionar")?"disabled":"";?> value="Modificar" class="btn btn-warning">Modificar</button>
+                    <button type="submit" name="action" <?php //echo ($accao!="Selecionar")?"disabled":"";?> value="Cancelar" class="btn btn-info">Cancelar</button>
                 </div>
 
             </form>
@@ -167,9 +167,7 @@ include("../config/bd.php");
                 <form method="post">
 
                     <input type="hidden" name="txtID" id="txtID" value="<?php echo$livros['id'];?>"/>
-
                     <input type="submit" value="Selecionar" name="action" class="btn btn-primary"/>
-
                     <input type="submit" value="Apagar" name="action" class="btn btn-danger"/>  
 
                 </form>
