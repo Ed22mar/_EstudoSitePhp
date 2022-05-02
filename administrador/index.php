@@ -5,7 +5,7 @@ if($_POST){
         $_SESSION['usuario']="ok";
         $_SESSION['nomeUsuario']="Dev";
 
-        header('Location:index.php');
+        header('Location:inicio.php');
     }else{
         $mensagem="Erro: O Usuario ou Senha incorrestas";
     }
