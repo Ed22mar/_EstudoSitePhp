@@ -1,6 +1,14 @@
 <?php 
+session_start();
+if($_POST){
+    if(($_POST['usuario']=="dev") && ($_POST['senha']=="1234")){
+        $_SESSION['usuario']="ok";
+        $_SESSION['nomeUsuario']="Dev";
 
-if(isset($_POST)){
+        header('Location:index.php');
+    }else{
+        $mensagem="Erro: O Usuario ou Senha incorrestas";
+    }
     //header('Location:index.php');
 }
 
@@ -28,6 +36,14 @@ if(isset($_POST)){
                         Login
                     </div>
                     <div class="card-body">
+
+                        <?php if (isset($mensagem)) {
+                            
+                         ?>
+                        <div class="alert alert-danger" role="alert">
+                            <strong><?php echo $mensagem;?></strong>
+                        </div>
+                            <?php } ?>
                         <form action="" method="post">
 
                             <div class="form-group">
