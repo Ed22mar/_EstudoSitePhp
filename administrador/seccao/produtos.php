@@ -13,9 +13,9 @@ include("../config/bd.php");
     
     switch($action){
         case "Salvar":
-            $fecha = new DateTime();
+            
             //$fecha= new DateTime();$fecha->getTimestamp()."_".
-            $nomeArquivo=($txtImagem!="")?$fecha->getTimestamp()."_".$_FILES["txtImagem"]["name"]:"imagem.jpg";
+            $nomeArquivo=($txtImagem!="")?$_FILES["txtImagem"]["name"]:"imagem.jpg";
             $tmpImagem=$_FILES["txtImagem"]["tmp_name"];
             if ($tmpImagem!="") {
                 move_uploaded_file($tmpImagem,"../../img/".$nomeArquivo);  
@@ -39,7 +39,7 @@ include("../config/bd.php");
             $sentenciaSQL->execute();   
 
             if($txtImagem!=""){
-
+                
                 //$fecha = new DateTime();$fecha->getTimestamp()."_".
                 $nomeArquivo=($txtImagem!="")?$_FILES["txtImagem"]["name"]:"imagem.jpg";
                 $tmpImagem=$_FILES["txtImagem"]["tmp_name"];
@@ -123,7 +123,13 @@ include("../config/bd.php");
                 </div>
                 <div class="form-group">
                     <label for="">Imagem:</label>
-                    <?php echo $txtImagem; ?>
+                    <br/>
+                    
+                    <?php if($txtImagem!=""):?>
+
+                        <img class="img-thumbnail rounded"src="../../img/<?php echo $txtImagem; ?>" width="50"alt="" srcset="">
+
+                    <?php endif; ?>
                     <input type="file" class="form-control" name="txtImagem" id="txtImagem">
                 </div>
                 <div class="btn-group" role="group" aria-label="">
@@ -153,7 +159,10 @@ include("../config/bd.php");
             <tr>
                 <td><?php echo $livros['id'];?></td>
                 <td><?php echo $livros['nome'];?></td>
-                <td><?php echo $livros['imagem'];?></td>
+                <td>
+                    <img class="img-thumbnail rounded" src="../../img/<?php echo $livros['imagem'];?>" width="50" alt="" srcset="">
+                    
+                </td>
                 <td>
                 <form method="post">
 
