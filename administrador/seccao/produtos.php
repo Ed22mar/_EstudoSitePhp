@@ -115,11 +115,11 @@ include("../config/bd.php");
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="txtID">ID:</label>
-                    <input type="text" value="<?php echo $txtID; ?>" class="form-control" name="txtID" id="txtID" placeholder="ID">
+                    <input type="text" required readonly value="<?php echo $txtID; ?>" class="form-control" name="txtID" id="txtID" placeholder="ID">
                 </div>
                 <div class="form-group">
                     <label for="txtNome">Nome:</label>
-                    <input type="text" value="<?php echo $txtNome; ?>" class="form-control" name="txtNome" id="txtNome" placeholder="Nome do livro">
+                    <input type="text" required value="<?php echo $txtNome; ?>" class="form-control" name="txtNome" id="txtNome" placeholder="Nome do livro">
                 </div>
                 <div class="form-group">
                     <label for="">Imagem:</label>
@@ -130,7 +130,7 @@ include("../config/bd.php");
                         <img class="img-thumbnail rounded"src="../../img/<?php echo $txtImagem; ?>" width="50"alt="" srcset="">
 
                     <?php endif; ?>
-                    <input type="file" class="form-control" name="txtImagem" id="txtImagem">
+                    <input type="file" required class="form-control" name="txtImagem" id="txtImagem">
                 </div>
                 <div class="btn-group" role="group" aria-label="">
                     <button type="submit" name="action" value="Salvar" class="btn btn-success">Salvar</button>
