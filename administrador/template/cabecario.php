@@ -1,3 +1,14 @@
+<?php 
+session_start();
+    if(!isset($_SESSION['usuario'])):
+        header("Location:../index.php");
+    else:
+        if($_SESSION['usuario']=="ok"){
+            $nomeUsuario=$_SESSION["nomeUsuario"];
+        }
+    endif;
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,7 +16,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
    <link rel="stylesheet" href="../../bootstrap.min.css">
   </head>
   <body>

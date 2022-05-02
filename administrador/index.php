@@ -1,7 +1,7 @@
 <?php 
 
 if(isset($_POST)){
-    header('Location:inicio.php');
+    //header('Location:index.php');
 }
 
 ?>
