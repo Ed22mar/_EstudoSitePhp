@@ -30,7 +30,7 @@ include("../config/bd.php");
             $sentenciaSQL->bindParam(':imagem',$txtImagem);
             $sentenciaSQL->execute();  
             
-
+            header('Location:produtos.php');
         break;
         case "Modificar":
             $sentenciaSQL=$conexao->prepare("UPDATE livros SET nome=:nome WHERE id=:id");
@@ -60,9 +60,11 @@ include("../config/bd.php");
                 $sentenciaSQL=$conexao->prepare("UPDATE livros SET imagem=:imagem WHERE id=:id");
                 $sentenciaSQL->bindParam(':imagem',$nomeArquivo);
                 $sentenciaSQL->bindParam(':id',$txtID);
-                $sentenciaSQL->execute();   
+                $sentenciaSQL->execute();  
+                
+                
             }
-
+            header('Location:produtos.php');
         break;
         case "Cancelar":
             header('Location:produtos.php');
@@ -94,7 +96,7 @@ include("../config/bd.php");
             $sentenciaSQL=$conexao->prepare("DELETE FROM livros WHERE id=:id");
             $sentenciaSQL->bindParam(':id',$txtID);
             $sentenciaSQL->execute();
-
+            header('Location:produtos.php');
         break;
     }
 
