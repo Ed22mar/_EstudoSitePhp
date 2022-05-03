@@ -1,57 +1,26 @@
-<?php include("template/cabecario.php");
+<?php 
+include("template/cabecario.php");?>
+<?php include("administrador/config/bd.php");
+
+$sentenciaSQL=$conexao->prepare("SELECT * FROM livros");
+$sentenciaSQL->execute();
+$Listarlivros=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
+
 ?>
 
-
+<?php foreach($Listarlivros as $livros){ ?>
     <div class="col-md-3">
         <div class="card">
-
-            <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="">
+            <img class="card-img-top" src="./img/<?php echo $livros['imagem']; ?>" alt="">
             <div class="card-body">
-                <h4 class="card-title">Livro PHP</h4>
+                <h4 class="card-title"><?php echo $livros['nome'];?></h4>
                 <a name="" id="" class="btn btn-primary" href="#" role="button">Ver mais</a>
             </div>
-
         </div>
     </div>  
-
+<?php  } ?>
     
-    <div class="col-md-3">
-        <div class="card">
-
-            <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="">
-            <div class="card-body">
-                <h4 class="card-title">Livro PHP</h4>
-                <a name="" id="" class="btn btn-primary" href="#" role="button">Ver mais</a>
-            </div>
-
-        </div>
-    </div>  
-
-    
-    <div class="col-md-3">
-        <div class="card">
-
-            <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="">
-            <div class="card-body">
-                <h4 class="card-title">Livro PHP</h4>
-                <a name="" id="" class="btn btn-primary" href="#" role="button">Ver mais</a>
-            </div>
-
-        </div>
-    </div>  
-
-    
-    <div class="col-md-3">
-        <div class="card">
-
-            <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="">
-            <div class="card-body">
-                <h4 class="card-title">Livro PHP</h4>
-                <a name="" id="" class="btn btn-primary" href="#" role="button">Ver mais</a>
-            </div>
-
-        </div>
-    </div>  
+   
 
 
 <?php include("template/rodape.php");?>
