@@ -7,7 +7,7 @@ if($_POST){
 
         header('Location:inicio.php');
     }else{
-        $mensagem="Erro: O Usuario ou Senha incorrestas";
+        $mensagem="Erro: O Usuario ou Senha incorreta";
     }
     //header('Location:index.php');
 }
