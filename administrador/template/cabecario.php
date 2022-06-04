@@ -10,13 +10,13 @@ session_start();
 
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
    <link rel="stylesheet" href="../../css/bootstrap.min.css">
   </head>
   <body>
@@ -28,7 +28,7 @@ session_start();
 
     <nav class="navbar navbar-expand navbar-light bg-light">
         <div class="nav navbar-nav">
-            <a class="nav-item nav-link active" href="#">Administrador do Site <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="#">Administrador do Site <span class="sr-only"></span></a>
             <a class="nav-item nav-link" href="<?php echo $url."/administrador/inicio.php";?>">Início</a>
             <a class="nav-item nav-link" href="<?php echo $url;?>/administrador/seccao/produtos.php">Livros</a>
             <a class="nav-item nav-link" href="<?php echo $url;?>/administrador/seccao/encerrar.php">Terminar Secção</a>
